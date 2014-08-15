@@ -81,3 +81,10 @@ The tests can also be run in the browser by starting the test server:
 
 This will start a server on port 3000, the tests are then available at '/test'
 
+## Support Chinese
+
+Use [aszxqw/nodejieba](https://github.com/aszxqw/nodejieba) to replace the original tokenizer,generate the index file.
+
+changed the regex in trimmer.js to avoid replace all the 'not word' string to empty string.
+
+The Main reason for adding this feature is make [GitbookIO/gitbook](https://github.com/GitbookIO/gitbook) support Chinese language-search 
