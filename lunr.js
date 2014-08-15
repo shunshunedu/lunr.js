@@ -176,6 +176,10 @@ lunr.EventEmitter.prototype.hasHandler = function (name) {
  * @param {String} obj The string to convert into tokens
  * @returns {Array}
  */
+if(typeof module !== 'undefined' && module.exports){
+  nodejieba_segment = require("nodejieba")
+  nodejieba_segment.queryLoadDict(__dirname + "/node_modules/nodejieba/dict/jieba.dict.utf8", __dirname + "/node_modules/nodejieba/dict/hmm_model.utf8")
+}
 lunr.tokenizer = function (obj) {
   if (!arguments.length || obj == null || obj == undefined) return []
   if (Array.isArray(obj)) return obj.map(function (t) { return t.toLowerCase() })
@@ -189,11 +193,21 @@ lunr.tokenizer = function (obj) {
     }
   }
 
-  return str
-    .split(/(?:\s+|\-)/)
-    .map(function (token) {
-      return token.toLowerCase()
-    })
+  if(typeof nodejieba_segment !== "undefined"){
+    var wordList = nodejieba_segment.queryCutSync(str);
+
+    return wordList
+      .map(function (token) {
+        return token.toLowerCase()
+      })
+  }else{
+
+    return str
+      .split(/(?:\s+|\-)/)
+      .map(function (token) {
+        return token.toLowerCase()
+      })
+  }
 }
 /*!
  * lunr.Pipeline
@@ -1650,8 +1664,8 @@ lunr.Pipeline.registerFunction(lunr.stopWordFilter, 'stopWordFilter')
  */
 lunr.trimmer = function (token) {
   return token
-    .replace(/^\W+/, '')
-    .replace(/\W+$/, '')
+    .replace(/^\s+/, '')
+    .replace(/\s+$/, '')
 }
 
 lunr.Pipeline.registerFunction(lunr.trimmer, 'trimmer')
