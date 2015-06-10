@@ -1,6 +1,6 @@
 /**
  * lunr - http://lunrjs.com - A bit like Solr, but much smaller and not as bright - 0.5.7
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  * MIT Licensed
  * @license
  */
@@ -59,7 +59,7 @@ var lunr = function (config) {
 lunr.version = "0.5.7"
 /*!
  * lunr.utils
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  */
 
 /**
@@ -83,7 +83,7 @@ lunr.utils.warn = (function (global) {
 
 /*!
  * lunr.EventEmitter
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  */
 
 /**
@@ -165,7 +165,7 @@ lunr.EventEmitter.prototype.hasHandler = function (name) {
 
 /*!
  * lunr.tokenizer
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  */
 
 /**
@@ -178,7 +178,6 @@ lunr.EventEmitter.prototype.hasHandler = function (name) {
  */
 if(typeof module !== 'undefined' && module.exports){
   nodejieba_segment = require("nodejieba")
-  nodejieba_segment.queryLoadDict(__dirname + "/node_modules/nodejieba/dict/jieba.dict.utf8", __dirname + "/node_modules/nodejieba/dict/hmm_model.utf8")
 }
 lunr.tokenizer = function (obj) {
   if (!arguments.length || obj == null || obj == undefined) return []
@@ -194,7 +193,7 @@ lunr.tokenizer = function (obj) {
   }
 
   if(typeof nodejieba_segment !== "undefined"){
-    var wordList = nodejieba_segment.queryCutSync(str);
+    var wordList = nodejieba_segment.cut(str);
 
     return wordList
       .map(function (token) {
@@ -214,7 +213,7 @@ lunr.tokenizer = function (obj) {
 }
 /*!
  * lunr.Pipeline
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  */
 
 /**
@@ -431,7 +430,7 @@ lunr.Pipeline.prototype.toJSON = function () {
 }
 /*!
  * lunr.Vector
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  */
 
 /**
@@ -556,7 +555,7 @@ lunr.Vector.prototype.similarity = function (otherVector) {
 }
 /*!
  * lunr.SortedSet
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  */
 
 /**
@@ -794,7 +793,7 @@ lunr.SortedSet.prototype.toJSON = function () {
 }
 /*!
  * lunr.Index
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  */
 
 /**
@@ -1215,7 +1214,7 @@ lunr.Index.prototype.use = function (plugin) {
 }
 /*!
  * lunr.Store
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  */
 
 /**
@@ -1311,7 +1310,7 @@ lunr.Store.prototype.toJSON = function () {
 
 /*!
  * lunr.stemmer
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  * Includes code from - http://tartarus.org/~martin/PorterStemmer/js.txt
  */
 
@@ -1529,7 +1528,7 @@ lunr.stemmer = (function(){
 lunr.Pipeline.registerFunction(lunr.stemmer, 'stemmer')
 /*!
  * lunr.stopWordFilter
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  */
 
 /**
@@ -1676,7 +1675,7 @@ lunr.stopWordFilter.stopWords.elements = [
 lunr.Pipeline.registerFunction(lunr.stopWordFilter, 'stopWordFilter')
 /*!
  * lunr.trimmer
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  */
 
 /**
@@ -1702,7 +1701,7 @@ lunr.trimmer = function (token) {
 lunr.Pipeline.registerFunction(lunr.trimmer, 'trimmer')
 /*!
  * lunr.stemmer
- * Copyright (C) 2014 Oliver Nightingale
+ * Copyright (C) 2015 Oliver Nightingale
  * Includes code from - http://tartarus.org/~martin/PorterStemmer/js.txt
  */
 

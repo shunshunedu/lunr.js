@@ -19,7 +19,7 @@
     "uglify-js": "2.4.13"
   },
   "dependencies": {
-    "nodejieba": "*"
+    "nodejieba": "1.0.2"
   },
   "scripts": {
     "test": "make test"
